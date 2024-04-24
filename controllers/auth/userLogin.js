@@ -1,6 +1,6 @@
-import { getCollectionName } from "../helpers/db_connection.js";
+import { getCollectionName } from "../../helpers/db_connection.js";
 import bcrypt from 'bcrypt';
-import { jwtTokenGenerator } from "../helpers/jwtGenerators.js";
+import { jwtTokenGenerator } from "../../helpers/jwtGenerators.js";
 
 
 
@@ -23,7 +23,7 @@ const userLogin = {
             res.status(400).json({message:"Please Provide a valid Password"})
         }
       } catch (error) {
-        
+        console.log(error)
       }
     }       
 }

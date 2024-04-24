@@ -1,16 +1,19 @@
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 
 // sets the token
-const jwtTokenGenerator  = (userData) =>{
-    const {email} = userData
-    const token = jwt.sign({email},process.env.JWT_SECRET ,{expiresIn:"1day"});
+const jwtTokenGenerator = (userData) => {
+    const { email } = userData
+    const expirationTime = Math.floor(Date.now() / 1000) + (15 * 60);
+    console.log(expirationTime);
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: expirationTime });
     return token;
 }
 
 // verifys the user token
-const jwtTokenVerifyer = (req,res,next) =>{
-    const token  = jwt.verify(user,process.env.JWT_SECRET )
+const jwtTokenVerifyer = (val) => {
+    const tokenValidation = val
+    const token = jwt.verify(tokenValidation, process.env.JWT_SECRET,)
     return token;
 }
 
-export  {jwtTokenGenerator,jwtTokenVerifyer}
+export { jwtTokenGenerator, jwtTokenVerifyer }
