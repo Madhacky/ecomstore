@@ -10,10 +10,18 @@ const jwtTokenGenerator = (userData) => {
 }
 
 // verifys the user token
-const jwtTokenVerifyer = (val) => {
-    const tokenValidation = val
-    const token = jwt.verify(tokenValidation, process.env.JWT_SECRET,)
-    return token;
+const jwtTokenVerifyer = (req, res) => {
+    try {
+        const token = req.headers.authorization;
+
+        const tokenValidation = token.split("Bearer ")[1]
+        const verifyToken = jwt.verify(tokenValidation, process.env.JWT_SECRET,);
+        console.log("token", verifyToken);
+        return true;
+    } catch (error) {
+        return false;
+    }
+
 }
 
 export { jwtTokenGenerator, jwtTokenVerifyer }

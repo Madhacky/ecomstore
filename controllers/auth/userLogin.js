@@ -10,6 +10,7 @@ const userLogin = {
     handler:async (req,res)=>{
       try {
         const {email,password} = req.body;
+        console.log(req.body);
         const collectionName = await getCollectionName('users');
         const collection =  await collectionName.findOne({email});  
         const passwordHash = collection['password'];  
