@@ -5,14 +5,14 @@ const getProductByBrand = {
     path: "/api/product/getProductByBrand",
     method: "get",
     handler: async (req, res) => {
-        const token = jwtTokenVerifyer(req, res);
-        if (!token) {
-            return res.status(401).json({ message: "unauthorized" });
-        } else {
+       // const token = jwtTokenVerifyer(req, res);
+       // if (!token) {
+        //    return res.status(401).json({ message: "unauthorized" });
+      //  } else {
             try {
                 const brandName = req.query.brandName;
 
-                console.log("token", token)
+                //console.log("token", token)
                 if (!brandName) {
                     return res.status(400).json({ message: "Please enter brand name" })
                 }
@@ -26,7 +26,7 @@ const getProductByBrand = {
             } catch (error) {
                 return res.status(500).json({ message: "internal server error" })
             }
-        }
+      //  }
 
 
     }

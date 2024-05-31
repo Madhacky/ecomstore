@@ -4,8 +4,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import initializeConnection from './helpers/db_connection.js'
 import { routes } from './routes/routes.js';
-import cookieParser from 'cookie-parser';
-import sanitizeResponse from './middlewares/block_password.js';
+import myMiddleware from './middlewares/my_middleware.js';
+import uploader from './controllers/products/upload.js';
+
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -13,9 +14,8 @@ app.use(express.urlencoded({
     extended:true,
 }))
 app.use(express.json());
-app.use(cookieParser())
-// app.use(sanitizeResponse);
 
+// app.use(sanitizeResponse);
 
 routes.forEach((route) =>{
 
